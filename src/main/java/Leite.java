@@ -1,33 +1,9 @@
-public abstract class Leite {
+public abstract class Leite{
+
     private int codigoDeBarra;
-    private String marcaLeite;
-    private String tipo;
-    private int quantidade;
-    private float valor;
-
-    public Leite(int codigoDeBarra, String marcaLeite, String tipo, int quantidade, float valor) {
-        this.codigoDeBarra = codigoDeBarra;
-        this.marcaLeite = marcaLeite;
-        this.tipo = tipo;
-        this.quantidade = quantidade;
-        this.valor = valor;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
+    protected String marcaLeite;
+    private float pesoLeite;
+    private float pesoCaixaDoLeite;
 
     public int getCodigoDeBarra() {
         return codigoDeBarra;
@@ -45,28 +21,37 @@ public abstract class Leite {
         this.marcaLeite = marcaLeite;
     }
 
-    public String getTipo() {
-        return tipo;
+    public float getPesoLeite() {
+        return pesoLeite;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setPesoLeite(float pesoLeite) {
+        this.pesoLeite = pesoLeite;
+    }
+    public float getPesoCaixaDoLeite() {
+        return pesoCaixaDoLeite;
     }
 
-    public float calculaDesconto(){
-        return
+    public void setPesoCaixaDoLeite(float pesoCaixaDoLeite) {
+        this.pesoCaixaDoLeite = pesoCaixaDoLeite;
+    }
+
+    public float pesoTotal(){
+        return (this.pesoLeite * 1000) + this.pesoCaixaDoLeite;
     }
 
     public abstract String verificaLeite();
 
-    public String getTipoNutricional(){
-        return "Leite";
+    public String getTipo(){
+        return "Leite Integral";
     }
-    public String getInfoNutricional(){
-        return getTipoNutricional() + "{" +
-                "Codigo de Barra = " + this.codigoDeBarra +
+
+
+    public String getInfoCaixa(){
+        return getTipo() + "{" +
+                " Codigo de Barra = " + this.codigoDeBarra +
                 ", Marca do Leite = '" + this.marcaLeite + '\''+
-                ", tipo = " + this.comparaTipo() +
+                ", estado = " + this.verificaLeite() +
                 '}';
     }
 }
